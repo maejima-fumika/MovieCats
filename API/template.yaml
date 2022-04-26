@@ -15,6 +15,8 @@ Globals:
             !FindInMap [TableNames, CategoriesTableName, !Ref EnvironmentType]
         MOVIES_TABLE:
             !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
+        MOVIES_TO_CATEGORIES_TABLE:
+            !FindInMap [TableNames, MoviesToCategoriesTableName, !Ref EnvironmentType]
 
   Api:
     Cors:
@@ -49,6 +51,9 @@ Mappings:
     MoviesTableName:
       Devo: "MovieCats-Devo-Movies"
       Prod: "MovieCats-Prod-Movies"
+    MoviesToCategoriesTableName:
+      Devo: "MovieCats-Devo-MoviesToCategories"
+      Prod: "MovieCats-Prod-MoviesToCategories"
 
 Resources:
   MovieCatsApi:
@@ -96,3 +101,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName:
               !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
+        - DynamoDBCrudPolicy:
+            TableName:
+              !FindInMap [TableNames, MoviesToCategoriesTableName, !Ref EnvironmentType]
+
