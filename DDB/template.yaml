@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  EnvironmentType:
+    Description: The environment type
+    Type: String
+    Default: Devo
+    AllowedValues:
+      - Prod
+      - Devo
+    ConstraintDescription: must be a Prod or Devo
+
+Mappings:
+  TableNames:
+    CategoriesTableName:
+      Devo: "MovieCats-Devo-Categories"
+      Prod: "MovieCats-Prod-Categories"
+    MoviesTableName:
+      Devo: "MovieCats-Devo-Movies"
+      Prod: "MovieCats-Prod-Movies"
+
+Resources:
+  CategoriesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "categoryId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "categoryId"
+          KeyType: "HASH"
+      TableName:
+        !FindInMap [TableNames, CategoriesTableName, !Ref EnvironmentType]
+
+  MoviesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "categoryId"
+          AttributeType: "S"
+        - AttributeName: "movieId"
+          AttributeType: "S"
+        - AttributeName: "averageRating"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "categoryId"
+          KeyType: "HASH"
+        - AttributeName: "movieId"
+          KeyType: "RANGE"
+      TableName:
+        !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
+      GlobalSecondaryIndexes:
+        - IndexName: "movieIdGsi"
+          KeySchema:
+            - AttributeName: "movieId"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+      LocalSecondaryIndexes:
+        - IndexName: "averageRatingLsi"
+          KeySchema:
+            - AttributeName: "categoryId"
+              KeyType: "HASH"
+            - AttributeName: "averageRating"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+

@@ -9,7 +9,7 @@ class MoviesTable:
     __sortkey_name = "movieId"
     __gsi_name = "movieIdGsi"
     __gsi_primarykey_name = "movieId"
-    __lsi_name = "averageRating"
+    __lsi_name = "averageRatingLsi"
     __lsi_partitionkey_name = "categoryId"
     __lsi_sortkey_name = "averageRating"
 
