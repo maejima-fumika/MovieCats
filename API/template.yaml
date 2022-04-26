@@ -1,0 +1,98 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  API
+
+  Sample SAM Template for API
+
+Globals:
+  Function:
+    Timeout: 10
+    Environment:
+      Variables:
+        DYNAMODB_ENDPOINT: ""
+        CATEGORIES_TABLE:
+            !FindInMap [TableNames, CategoriesTableName, !Ref EnvironmentType]
+        MOVIES_TABLE:
+            !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
+
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS,POST,GET'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers'"
+      AllowOrigin: "'*'"
+      AllowCredentials: False
+
+Parameters:
+  EnvironmentType:
+    Description: The environment type
+    Type: String
+    Default: Devo
+    AllowedValues:
+      - Prod
+      - Devo
+    ConstraintDescription: must be a Prod or Devo
+
+Mappings:
+  FunctionNames:
+    MovieCatsUIFunction:
+      Devo: "MovieCats-Devo-UIFunction"
+      Prod: "MovieCats-Prod-UIFunction"
+  APINames:
+    MovieCatsApi:
+      Devo: "MovieCats-Devo-API"
+      Prod: "MovieCats-Prod-API" 
+  TableNames:
+    CategoriesTableName:
+      Devo: "MovieCats-Devo-Categories"
+      Prod: "MovieCats-Prod-Categories"
+    MoviesTableName:
+      Devo: "MovieCats-Devo-Movies"
+      Prod: "MovieCats-Prod-Movies"
+
+Resources:
+  MovieCatsApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref EnvironmentType
+      Name: !FindInMap [APINames, MovieCatsApi, !Ref EnvironmentType]
+      GatewayResponses:
+        DEFAULT_4XX:
+          ResponseTemplates:
+            "application/json": '{ "message": $context.error.messageString, "status": $context.status }'
+          ResponseParameters:
+            Headers:
+              Access-Control-Allow-Origin: "'*'"
+              Access-Control-Allow-Headers: "'X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Content-Type,Accept'"
+              Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+        DEFAULT_5XX:
+          ResponseTemplates:
+            "application/json": '{ "message": $context.error.messageString, "status": $context.status }'
+          ResponseParameters:
+            Headers:
+              Access-Control-Allow-Origin: "'*'"
+              Access-Control-Allow-Headers: "'X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Content-Type,Accept'"
+              Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+
+  MovieCatsUIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      FunctionName:
+        !FindInMap [FunctionNames, MovieCatsUIFunctionName, !Ref EnvironmentType]
+      Events:
+        Root:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MovieCatsApi
+            Path: /movie-cats-ui/{proxy+}
+            Method: ANY
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName:
+              !FindInMap [TableNames, CategoriesTableName, !Ref EnvironmentType]
+        - DynamoDBCrudPolicy:
+            TableName:
+              !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
