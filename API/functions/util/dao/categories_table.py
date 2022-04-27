@@ -36,3 +36,12 @@ class CategoriesTable:
         else:
             return response_items
 
+    def get_category_name(self, category_id:str)->str:
+        try:
+            response = self.__table.get_item(Key={
+                self.__primarykey_name:category_id
+            })
+        except ClientError as e:
+            raise TableError(__name__, e.response['Error']['Code'], e.response["Error"]["Message"])
+        else:
+            return response.get('Item',{}).get("categoryName",None)

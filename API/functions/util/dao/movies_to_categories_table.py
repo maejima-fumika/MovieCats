@@ -39,3 +39,16 @@ class MoviesToCategoriesTable:
         else:
             return response["Items"]
 
+    def query_categories_of_movie(self, movie_id:str)->list:
+        try:
+            response = self.__table.query(
+                IndexName=self.__gsi_name,
+                ProjectionExpression="categoryId, movieId",
+                KeyConditionExpression=Key(self.__gsi_primarykey_name).eq(movie_id),
+                ScanIndexForward=False,
+            )
+        except ClientError as e:
+            raise TableError(__name__, e.response['Error']['Code'], e.response["Error"]["Message"])
+        else:
+            return response["Items"]
+
