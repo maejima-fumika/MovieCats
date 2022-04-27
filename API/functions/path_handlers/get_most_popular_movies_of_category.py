@@ -4,13 +4,16 @@ from util.dao.movies_to_categories_table import MoviesToCategoriesTable
 from util.dao.movies_table import MoviesTable
 from util.model.encoders import DecimalToFloatEncoder
 from util.web.image_url_and_description import ImageUrlAndDescription
+from util.model.errors import ClientRequestError
 
 def get_most_popular_movies_of_category_handler(event_body):
     response = ApiResponse()
     try:
         #check event_body
+        if 'categoryId' not in event_body.keys():
+            raise ClientRequestError(__name__, "categoryId does not exist in the client request body.")
         category_id = event_body['categoryId']
-    except KeyError as e:
+    except ClientRequestError as e:
         response.add_error(e)
         return response.to_json()
 

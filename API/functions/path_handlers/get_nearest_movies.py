@@ -1,14 +1,17 @@
 from util.model.api_response import ApiResponse
 from util.dao.movies_table import MoviesTable
 from util.web.image_url_and_description import ImageUrlAndDescription
+from util.model.errors import ClientRequestError
 import json
 
 def get_nearest_movies_handler(event_body):
     response = ApiResponse()
     try:
         #check event_body
+        if 'movieId' not in event_body.keys():
+            raise ClientRequestError(__name__, "movieId does not exist in the client request body.")
         movie_id = event_body['movieId']
-    except KeyError as e:
+    except ClientRequestError as e:
         response.add_error(e)
         return response.to_json()
 
