@@ -21,7 +21,6 @@
 | title | | String | |
 | averageRating | | Number | |
 | imageUrl | | String or Null | |
-| videoUrl | | String or Null | |
 | description | | String or Null | |
 | imdbId | | String | identifier for movies used by <http://www.imdb.com>. |
 | tmdbId | | String | identifier for movies used by <https://www.themoviedb.org>. |

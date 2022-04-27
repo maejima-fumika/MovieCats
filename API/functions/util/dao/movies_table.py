@@ -40,21 +40,6 @@ class MoviesTable:
             raise TableError(__name__, e.response['Error']['Code'], e.response["Error"]["Message"])
         else:
             return response
-
-    def add_video_url_to_movie(self, movie_id:str, video_url:str="Not exists"):
-        try:
-            response = self.__table.update_item(
-            Key={
-                self.__primarykey_name: movie_id,
-            },
-            UpdateExpression="set videoUrl=:video_url",
-            ExpressionAttributeValues={':video_url': video_url},
-            ReturnValues="UPDATED_NEW"
-        )
-        except ClientError as e:
-            raise TableError(__name__, e.response['Error']['Code'], e.response["Error"]["Message"])
-        else:
-            return response
     
     def add_description_to_movie(self, movie_id:str, description:str="Not exists"):
         try:
