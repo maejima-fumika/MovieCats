@@ -11,9 +11,6 @@ def lambda_handler(event, context):
     if event["path"] == "/movie-cats-ui/get-most-popular-movies-of-category":
         return path_handlers.get_most_popular_movies_of_category_handler(event_body)
 
-    if event["path"] == "/movie-cats-ui/get-detailed-movie-data":
-        return path_handlers.get_detailed_movie_data_handler(event_body)
-
     if event["path"] == "/movie-cats-ui/get-nearest-movies":
         return path_handlers.get_nearest_movies_handler(event_body)
 
