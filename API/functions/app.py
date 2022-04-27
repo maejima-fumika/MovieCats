@@ -5,7 +5,7 @@ def lambda_handler(event, context):
     event_body = json.loads(event["body"])
 
     if event["path"] == "/movie-cats-ui/list-categories":
-        path_handlers.list_categories_handler(event_body)
+        return path_handlers.list_categories_handler()
 
     if event["path"] == "/movie-cats-ui/get-most-popular-movies-of-category":
         path_handlers.get_most_popular_movies_of_category_handler(event_body)
