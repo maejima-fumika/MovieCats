@@ -25,7 +25,6 @@
 | description | | String or Null | |
 | imdbId | | String | identifier for movies used by <http://www.imdb.com>. |
 | tmdbId | | String | identifier for movies used by <https://www.themoviedb.org>. |
-| quoteSource | | String or Null | quote source of image, video and description |
 | nearestMovieIds | | String or Null | ex.:"['1','2','3']" |
 | createdAt | | String | ex.:2021-09-27T15:08:10 |
 | updatedAt | | String | ex.:2021-09-27T15:08:10 |
