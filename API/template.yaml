@@ -86,7 +86,7 @@ Resources:
       Handler: app.lambda_handler
       Runtime: python3.8
       FunctionName:
-        !FindInMap [FunctionNames, MovieCatsUIFunctionName, !Ref EnvironmentType]
+        !FindInMap [FunctionNames, MovieCatsUIFunction, !Ref EnvironmentType]
       Events:
         Root:
           Type: Api

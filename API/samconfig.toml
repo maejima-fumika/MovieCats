@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "MovieCats-Devo-API"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-z7av2elyt95s"
+s3_prefix = "MovieCats-Devo-API"
+region = "ap-northeast-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "EnvironmentType=\"Devo\""
+image_repositories = []
