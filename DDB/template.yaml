@@ -60,7 +60,7 @@ Resources:
           AttributeType: "S"
         - AttributeName: "movieId"
           AttributeType: "S"
-        - AttributeName: "averageRating"
+        - AttributeName: "averageRatingOfMovie"
           AttributeType: "N"
       KeySchema:
         - AttributeName: "categoryId"
@@ -77,11 +77,11 @@ Resources:
           Projection:
             ProjectionType: "ALL"
       LocalSecondaryIndexes:
-        - IndexName: "averageRatingLsi"
+        - IndexName: "averageRatingOfMovieLsi"
           KeySchema:
             - AttributeName: "categoryId"
               KeyType: "HASH"
-            - AttributeName: "averageRating"
+            - AttributeName: "averageRatingOfMovie"
               KeyType: "RANGE"
           Projection:
             ProjectionType: "ALL"
