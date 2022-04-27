@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 from urllib import request
 
-def get_image_url(imdb_link:str)->str:
+def get_image_url(imdb_id:str)->str:
     try:
-        url = f'https://www.imdb.com/title/tt{imdb_link}/'
+        url = f'https://www.imdb.com/title/tt{imdb_id}/'
         response = request.urlopen(url)
         soup = BeautifulSoup(response,features="lxml")
         response.close()
@@ -12,9 +12,9 @@ def get_image_url(imdb_link:str)->str:
         return ''
     return movie_image_img.get('src', '')
 
-def get_video_url(imdb_link:str)->str:
+def get_video_url(imdb_id:str)->str:
     try:
-        url = f'https://www.imdb.com/title/tt{imdb_link}/'
+        url = f'https://www.imdb.com/title/tt{imdb_id}/'
         response = request.urlopen(url)
         soup = BeautifulSoup(response,features="lxml")
         response.close()
@@ -24,9 +24,9 @@ def get_video_url(imdb_link:str)->str:
     href = movie_video_a.get('href', '')
     return 'https://www.imdb.com'+href if href else ''
 
-def get_description(imdb_link:str)->str:
+def get_description(imdb_id:str)->str:
     try:
-        url = f'https://www.imdb.com/title/tt{imdb_link}/'
+        url = f'https://www.imdb.com/title/tt{imdb_id}/'
         response = request.urlopen(url)
         soup = BeautifulSoup(response,features="lxml")
         response.close()
