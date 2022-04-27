@@ -1,5 +1,4 @@
 from .wrong_path import wrong_path_handler
-from .get_detailed_movie_data import get_detailed_movie_data_handler
 from .get_most_popular_movies_of_category import get_most_popular_movies_of_category_handler
 from .get_nearest_movies import get_nearest_movies_handler
 from .list_categories import list_categories_handler

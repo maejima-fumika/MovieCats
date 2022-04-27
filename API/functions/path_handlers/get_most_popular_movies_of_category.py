@@ -38,7 +38,7 @@ def add_image_url_and_description_to_movies(movies:list):
         detailed_movie = movies_table.get_movie_by_movie_id(movie_id)
         imdb_id = detailed_movie.get("imdbId",None)
         tmdb_id = detailed_movie.get("tmdbId",None)
-        if "imageUrl" not in detailed_movie.keys() or not detailed_movie["imageUrl"]:
+        if "imageUrl" not in detailed_movie.keys():
             image_url_and_description = ImageUrlAndDescription(imdb_id,tmdb_id)
             image_url, description = image_url_and_description.get_data()
             movies_table.add_image_url_to_movie(movie_id, image_url)
