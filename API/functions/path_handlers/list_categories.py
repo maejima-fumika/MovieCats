@@ -1,4 +1,3 @@
-from unicodedata import category
 from util.model.api_response import ApiResponse
 from util.dao.categories_table import CategoriesTable
 from util.model.encoders import DecimalToIntEncoder

@@ -1,4 +1,3 @@
-from unicodedata import category
 from util.model.api_response import ApiResponse
 from util.dao.movies_to_categories_table import MoviesToCategoriesTable
 from util.dao.movies_table import MoviesTable

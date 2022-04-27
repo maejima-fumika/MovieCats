@@ -1,4 +1,3 @@
-from turtle import st
 from bs4 import BeautifulSoup
 import urllib.request
 

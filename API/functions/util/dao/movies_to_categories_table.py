@@ -1,4 +1,3 @@
-from tracemalloc import start
 import boto3
 import os
 from botocore.exceptions import ClientError
