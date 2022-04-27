@@ -26,8 +26,6 @@ class MoviesToCategoriesTable:
         self.__table = dynamodb.Table(table_name)
 
     def query_movies_of_category_based_on_average_ratings(self,category_id:str,limit=10)->list:
-        start = decimal.Decimal("0")
-        end = decimal.Decimal("5")
         try:
             response = self.__table.query(
                 IndexName=self.__lsi_name,
