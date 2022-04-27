@@ -17,8 +17,6 @@ Globals:
             !FindInMap [TableNames, MoviesTableName, !Ref EnvironmentType]
         MOVIES_TO_CATEGORIES_TABLE:
             !FindInMap [TableNames, MoviesToCategoriesTableName, !Ref EnvironmentType]
-        ML_RESULT_BUCKET:
-            !FindInMap [BucketNames, MLResultBucketName, !Ref EnvironmentType]
 
   Api:
     Cors:
@@ -56,10 +54,6 @@ Mappings:
     MoviesToCategoriesTableName:
       Devo: "MovieCats-Devo-MoviesToCategories"
       Prod: "MovieCats-Prod-MoviesToCategories"
-  BucketNames:
-    MLResultBucketName:
-      Devo: "moviecats-devo-ml-result"
-      Prod: "moviecats-devo-ml-result"
 
 Resources:
   MovieCatsApi:
@@ -110,7 +104,3 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName:
               !FindInMap [TableNames, MoviesToCategoriesTableName, !Ref EnvironmentType]
-        - S3ReadPolicy:
-            BucketName:
-              !FindInMap [BucketNames, MLResultBucketName, !Ref EnvironmentType]
-

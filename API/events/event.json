@@ -1,7 +1,7 @@
 {
-  "body": "{\"message\": \"hello world\"}",
+  "body": "{\"movieId\": \"1\"}",
   "resource": "/hello",
-  "path": "/hello",
+  "path": "/movie-cats-ui/get_category_names_of_movie",
   "httpMethod": "GET",
   "isBase64Encoded": false,
   "queryStringParameters": {

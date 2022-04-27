@@ -1,0 +1,8 @@
+{
+    "Parameters":{
+        "DYNAMODB_ENDPOINT": "",
+        "CATEGORIES_TABLE":"MovieCats-Devo-Categories",
+        "MOVIES_TABLE":"MovieCats-Devo-Movies",
+        "MOVIES_TO_CATEGORIES_TABLE":"MovieCats-Devo-MoviesToCategories"
+    }
+}
