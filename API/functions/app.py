@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     if event["path"] == "/movie-cats-ui/get-movie":
         return path_handlers.get_movie_handler(event_body)
 
-    if event["path"] == "/movie-cats-ui/get_category_names_of_movie":
+    if event["path"] == "/movie-cats-ui/get-category-names-of-movie":
         return path_handlers.get_category_names_of_movie_handler(event_body)
 
     else:

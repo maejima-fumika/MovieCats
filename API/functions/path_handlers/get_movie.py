@@ -33,7 +33,7 @@ def get_movie_handler(event_body):
         movie = {
             "movieId":movie_id,
             "title":movie.get("title", "Not found"),
-            "averageRating": movie.get("averageRating", 0),
+            "averageRatingOfMovie": movie.get("averageRating", 0),
             "imageUrl": image_url,
             "description": description
         }

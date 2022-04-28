@@ -48,7 +48,7 @@ def get_movies_data(movie_ids):
         movie = {
             "movieId":movie_id,
             "title":detailed_movie.get("title", "Not found"),
-            "averageRating": detailed_movie.get("averageRating", 0),
+            "averageRatingOfMovie": detailed_movie.get("averageRating", 0),
             "imageUrl": image_url,
             "description": description
         }
