@@ -4,6 +4,7 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import { Movie } from '../models/type';
 import MovieList from '../components/movie-list';
+import { Typography } from '@mui/material';
 
 export default function MoviesOfCategory(){
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -27,7 +28,6 @@ export default function MoviesOfCategory(){
             setMoviesNotFound(true)
           }
           setIsLoading(false)
-          console.log(moviesNotFound)
         };
         fetchData();
       }, []);
@@ -36,6 +36,9 @@ export default function MoviesOfCategory(){
       {moviesNotFound || (!isLoading && movies.length==0)
         ?<div style={{textAlign:"center",marginTop:100}}><h2>Movies were not found.</h2></div>
         :<div>
+          <Typography color="text.secondary" component="div" style={{marginTop:20, marginLeft:15, fontSize:15}}>
+            {params.name}
+          </Typography>
           <MovieList 
             movies={movies} 
             isLoading={isLoading}

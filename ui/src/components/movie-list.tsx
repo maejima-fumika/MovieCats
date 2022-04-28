@@ -8,7 +8,6 @@ import Avatar from '@mui/material/Avatar';
 import { Rating } from '@mui/material';
 import { Movie } from '../models/type';
 import IsLoading from './is-loading';
-import { Link } from 'react-router-dom';
 
 type MovieListProps = {
     movies:Movie[],
@@ -22,10 +21,9 @@ export default function MovieList(props:MovieListProps){
         <div>
         {props.isLoading
             ? <IsLoading marginTop={150}/>
-            :<List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            :<List sx={{ width: '100%', bgcolor: 'background.paper',mt:0 }}>
              {movies.map((movie)=>(
                 <div  key={movie.movieId}>
-                {/* <Link to={`/movie-detail/${movie.movieId}`}> */}
                 <ListItem alignItems="flex-start" onClick={()=>props.onItemClicked(movie.movieId)}>
                 <ListItemAvatar>
                     <Avatar variant="square" sx={{ width: 45, height: 70 }}  alt="Remy Sharp" src={movie.imageUrl} />
@@ -57,7 +55,6 @@ export default function MovieList(props:MovieListProps){
                     }}
                 />
                 </ListItem>
-                {/* </Link> */}
                 <Divider variant="inset" component="li" />
                 </div>
         ))}
