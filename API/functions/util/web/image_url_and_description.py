@@ -47,5 +47,6 @@ class ImageUrlAndDescription:
                   .find("div",class_="poster")\
                   .find("div",class_="image_content backdrop")\
                   .find("img")
+        src = img['src'].replace('_filter(blur)', '')
         over_view_p = soup.find("div",class_="overview").find("p")
-        return f"https://www.themoviedb.org/{img['src']}", over_view_p.text
+        return f"https://www.themoviedb.org/{src}", over_view_p.text
