@@ -31,9 +31,13 @@ export default function MovieDetail(){
 
     const getMovieData = async() =>{
         setMovieDataLoading(true)
+        try{
         const url = "https://4dyci0sd2g.execute-api.ap-northeast-1.amazonaws.com/Devo/movie-cats-ui/get-movie"
         const response = await axios.post(url,{"movieId":params.id})
         setMovie(response.data.movie)
+        }catch{
+            setMovie(emptyMovie)
+        }
         setMovieDataLoading(false)
     }
 
@@ -45,9 +49,13 @@ export default function MovieDetail(){
 
     const getNearestMovies = async()=>{
         setNearestMovieLoading(true)
+        try{
         const url = "https://4dyci0sd2g.execute-api.ap-northeast-1.amazonaws.com/Devo/movie-cats-ui/get-nearest-movies"
         const response = await axios.post(url,{"movieId":params.id})
         setNearestMovies(response.data.movies)
+        }catch{
+            setNearestMovies([])
+        }
         setNearestMovieLoading(false)
     }
 

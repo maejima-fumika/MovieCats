@@ -6,8 +6,9 @@ import { Movie } from '../models/type';
 import MovieList from '../components/movie-list';
 
 export default function MoviesOfCategory(){
-    const [isLoading, setIsLoading] = useState(false)
-    const [movies, setMovies] =useState<Movie[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [movies, setMovies] = useState<Movie[]>([])
+    const [moviesNotFound, setMoviesNotFound] = useState<boolean>(false)
     const params = useParams();
     const navigate = useNavigate();
 
@@ -18,18 +19,31 @@ export default function MoviesOfCategory(){
     useEffect(() => {
         const fetchData = async () => {
           setIsLoading(true)
+          try{
           const url = "https://4dyci0sd2g.execute-api.ap-northeast-1.amazonaws.com/Devo/movie-cats-ui/get-most-popular-movies-of-category"
           const response = await axios.post(url,{"categoryId":params.id})
           setMovies(response.data.movies)
+          if (movies.length==0) {
+            setMoviesNotFound(true)
+          }
+          }catch{
+            setMoviesNotFound(true)
+          }
           setIsLoading(false)
+          console.log(moviesNotFound)
         };
         fetchData();
       }, []);
     return (
-        <MovieList 
+      <div>
+      {moviesNotFound
+        ?<div style={{textAlign:"center",marginTop:100}}><h2>Movies were not found.</h2></div>
+        :<MovieList 
           movies={movies} 
           isLoading={isLoading}
           onItemClicked={goToNextMoviePage}
         />
+      }
+      </div>
       );
 }
