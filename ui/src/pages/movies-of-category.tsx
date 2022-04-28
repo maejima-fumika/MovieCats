@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import { Movie } from '../models/type';
@@ -9,6 +9,12 @@ export default function MoviesOfCategory(){
     const [isLoading, setIsLoading] = useState(false)
     const [movies, setMovies] =useState<Movie[]>([])
     const params = useParams();
+    const navigate = useNavigate();
+
+    const goToNextMoviePage = (movieId:string)=>{
+      navigate(`/redirect-to-movie-detail/${movieId}`)
+    }
+
     useEffect(() => {
         const fetchData = async () => {
           setIsLoading(true)
@@ -20,6 +26,10 @@ export default function MoviesOfCategory(){
         fetchData();
       }, []);
     return (
-        <MovieList movies={movies} isLoading={isLoading}/>
+        <MovieList 
+          movies={movies} 
+          isLoading={isLoading}
+          onItemClicked={goToNextMoviePage}
+        />
       );
 }

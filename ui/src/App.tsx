@@ -11,6 +11,7 @@ import { Avatar } from '@mui/material';
 import Home from './pages/home';
 import MoviesOfCategory from './pages/movies-of-category';
 import MovieDetail from './pages/movie-detail';
+import RedirectToMovieDetail from './pages/redirect-to-movie-detail';
 import NotFound from './pages/not-found';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Toolbar>
         <Avatar variant="square" sx={{ width: 35, height: 35 }}  alt="Remy Sharp" src="https://moviecats-devo-category-images.s3.ap-northeast-1.amazonaws.com/icon.PNG" />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{marginLeft:5}}>
-            Movie Cats
+            Movie Cat
           </Typography>
           <IconButton color="inherit">
             <SearchIcon />
@@ -34,7 +35,8 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="movies-of-category/:id/:name" element={<MoviesOfCategory />} />
-          <Route path="movie-detail" element={<MovieDetail />} />
+          <Route path="movie-detail/:id" element={<MovieDetail />} />
+          <Route path="redirect-to-movie-detail/:id" element={<RedirectToMovieDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
