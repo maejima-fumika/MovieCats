@@ -20,6 +20,8 @@ def get_movie_handler(event_body):
     try:
         movies_table = MoviesTable()
         movie = movies_table.get_movie_by_movie_id(movie_id)
+        if movie == {}:
+            raise ClientRequestError(__name__, "The requested Movie Does not exist.")
         imdb_id = movie.get("imdbId",None)
         tmdb_id = movie.get("tmdbId",None)
         if "imageUrl" not in movie.keys():
