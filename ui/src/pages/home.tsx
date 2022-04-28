@@ -23,7 +23,7 @@ export default function Home(){
     return (
         <ImageList>
           {categories.map((category) => (
-            <Link to={`/movies-of-category/${category.categoryId}/name`} key={category.categoryId}>
+            <Link to={`/movies-of-category/${category.categoryId}/${category.categoryName}`} key={category.categoryId}>
             <ImageListItem key={category.categoryId}>
               <img
                 src={`${category.imageUrl}?w=248&fit=crop&auto=format`}

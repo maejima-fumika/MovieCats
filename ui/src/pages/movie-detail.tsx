@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams,useNavigate,useLocation } from "react-router-dom";
 import { useEffect,useState } from 'react';
 import Typography from '@mui/material/Typography';
 import MovieCard from '../components/movie-card';
@@ -23,11 +23,13 @@ export default function MovieDetail(){
     const [nearestMovieLoading,setNearestMovieLoading] = useState<boolean>(false)
     const params = useParams();
     const navigate = useNavigate()
+    const location = useLocation()
+
     useEffect(() => {
             getMovieData()
             getMovieCategoryNames()
             getNearestMovies()
-    }, []);
+    }, [location.key]);
 
     const getMovieData = async() =>{
         setMovieDataLoading(true)
@@ -60,7 +62,7 @@ export default function MovieDetail(){
     }
 
     const goToNextMoviePage = (movieId:string)=>{
-        navigate(`/redirect-to-movie-detail/${movieId}`)
+        navigate(`/movie-detail/${movieId}`)
     }
 
     return (

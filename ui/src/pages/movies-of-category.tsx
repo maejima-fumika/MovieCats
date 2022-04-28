@@ -13,7 +13,7 @@ export default function MoviesOfCategory(){
     const navigate = useNavigate();
 
     const goToNextMoviePage = (movieId:string)=>{
-      navigate(`/redirect-to-movie-detail/${movieId}`)
+      navigate(`/movie-detail/${movieId}`)
     }
 
     useEffect(() => {
@@ -23,9 +23,6 @@ export default function MoviesOfCategory(){
           const url = "https://4dyci0sd2g.execute-api.ap-northeast-1.amazonaws.com/Devo/movie-cats-ui/get-most-popular-movies-of-category"
           const response = await axios.post(url,{"categoryId":params.id})
           setMovies(response.data.movies)
-          if (movies.length==0) {
-            setMoviesNotFound(true)
-          }
           }catch{
             setMoviesNotFound(true)
           }
@@ -36,13 +33,15 @@ export default function MoviesOfCategory(){
       }, []);
     return (
       <div>
-      {moviesNotFound
+      {moviesNotFound || (!isLoading && movies.length==0)
         ?<div style={{textAlign:"center",marginTop:100}}><h2>Movies were not found.</h2></div>
-        :<MovieList 
-          movies={movies} 
-          isLoading={isLoading}
-          onItemClicked={goToNextMoviePage}
-        />
+        :<div>
+          <MovieList 
+            movies={movies} 
+            isLoading={isLoading}
+            onItemClicked={goToNextMoviePage}
+          />
+        </div>
       }
       </div>
       );
