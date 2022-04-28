@@ -4,3 +4,11 @@ export type Category = {
     numOfMovies: number,
     imageUrl: string
 }
+
+export type Movie = {
+    movieId: string,
+    title: string,
+    averageRatingOfMovie: number,
+    imageUrl: string,
+    description: string
+}

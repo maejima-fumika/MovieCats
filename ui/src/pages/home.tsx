@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -22,16 +23,19 @@ export default function Home(){
     return (
         <ImageList>
           {categories.map((category) => (
-            <ImageListItem key={category.categoryId} cols={1} rows={2}>
+            <Link to={`/movies-of-category/${category.categoryId}/name`} key={category.categoryId}>
+            <ImageListItem key={category.categoryId}>
               <img
                 src={`${category.imageUrl}?w=248&fit=crop&auto=format`}
                 alt={category.categoryName}
                 loading="lazy"
+                
               />
               <ImageListItemBar
                 title={category.categoryName}
               />
             </ImageListItem>
+            </Link>
           ))}
         </ImageList>
       );
