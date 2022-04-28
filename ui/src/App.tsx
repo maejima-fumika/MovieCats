@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Avatar } from '@mui/material';
 
 import Home from './pages/home';
 import MovieList from './pages/movie-list';
@@ -20,16 +21,8 @@ function App() {
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" style={{backgroundColor:"black"}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Avatar variant="square" sx={{ width: 35, height: 35 }}  alt="Remy Sharp" src="https://moviecats-devo-category-images.s3.ap-northeast-1.amazonaws.com/icon.PNG" />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{marginLeft:5}}>
             Movie Cats
           </Typography>
           <IconButton color="inherit">
