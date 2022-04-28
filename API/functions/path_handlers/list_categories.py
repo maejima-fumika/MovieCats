@@ -7,6 +7,7 @@ def list_categories_handler():
     try:
         categories_table = CategoriesTable()
         categories = categories_table.scan_categories()
+        categories = [c for c in categories if c["categoryId"] != "18"]
         response_body = {
             "categories":categories
         }

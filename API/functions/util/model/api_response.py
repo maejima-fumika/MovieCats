@@ -31,5 +31,11 @@ class ApiResponse:
         return {
             "statusCode":self.__status_code,
             "body":json.dumps(self.__body, ensure_ascii=False,cls=encoder),
+            "headers": {
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+                'Access-Control-Allow-Credentials': True
+            }
         }
     
