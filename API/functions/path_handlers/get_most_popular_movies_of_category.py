@@ -51,7 +51,7 @@ def add_image_url_and_description_to_movies(movies:list):
         new_movie = dict({
             "imageUrl":image_url, 
             "description":description,
-            "title":detailed_movie.get("title", "")
+            "title":detailed_movie.get("title", "Not found.")
             }, **movie)
         new_movies.append(new_movie)
     return new_movies

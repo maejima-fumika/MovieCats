@@ -3,3 +3,4 @@ from .get_most_popular_movies_of_category import get_most_popular_movies_of_cate
 from .get_nearest_movies import get_nearest_movies_handler
 from .list_categories import list_categories_handler
 from .get_category_names_of_movie import get_category_names_of_movie_handler
+from .get_movie import get_movie_handler
