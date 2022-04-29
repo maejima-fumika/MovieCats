@@ -5,8 +5,10 @@ import axios from 'axios';
 import { Movie } from '../models/type';
 import MovieList from '../components/movie-list';
 import { Typography } from '@mui/material';
+import { observer } from 'mobx-react-lite';
+import SaveMoviesStore from '../store/saved-movies-store';
 
-export default function MoviesOfCategory(){
+export default function MoviesOfCategory(props:{store:SaveMoviesStore}){
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [movies, setMovies] = useState<Movie[]>([])
     const [moviesNotFound, setMoviesNotFound] = useState<boolean>(false)
@@ -43,6 +45,7 @@ export default function MoviesOfCategory(){
             movies={movies} 
             isLoading={isLoading}
             onItemClicked={goToNextMoviePage}
+            store={props.store}
           />
         </div>
       }

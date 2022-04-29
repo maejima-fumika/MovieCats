@@ -21,4 +21,8 @@ export default class SaveMoviesStore {
         this.savedMovies = this.savedMovies.filter(mi=>mi != movieId)
         localStorage.savedMovies = JSON.stringify(this.savedMovies)
     }
+
+    checkMovieExists(movieId:string){
+        return this.savedMovies.includes(movieId)
+    }
 }

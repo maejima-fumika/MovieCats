@@ -9,14 +9,17 @@ import { Rating } from '@mui/material';
 import { Movie } from '../models/type';
 import IsLoading from './is-loading';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import { observer } from 'mobx-react-lite';
+import SaveMoviesStore from '../store/saved-movies-store';
 
 type MovieListProps = {
     movies:Movie[],
     isLoading:boolean,
-    onItemClicked:(movieId:string)=>void
+    onItemClicked:(movieId:string)=>void,
+    store:SaveMoviesStore
 }
 
-export default function MovieList(props:MovieListProps){
+export default observer(function MovieList(props:MovieListProps){
     const movies = props.movies
     return (
         <div>
@@ -42,7 +45,8 @@ export default function MovieList(props:MovieListProps){
                     secondary={
                     <React.Fragment>
                         <Rating name="read-only" value={movie.averageRatingOfMovie} precision={0.1}  readOnly style={{marginTop:5}} size="small"/>
-                        <BookmarkAddedIcon style={{marginBottom:-2}}/>
+                        {props.store.checkMovieExists(movie.movieId) && 
+                            <BookmarkAddedIcon style={{marginBottom:-1}} fontSize="small" color='secondary'/>}
                         <br />
                         {movie.description}
                     </React.Fragment>
@@ -64,4 +68,4 @@ export default function MovieList(props:MovieListProps){
         }
         </div>
       );
-}
+})

@@ -6,6 +6,8 @@ import MovieCard from '../components/movie-card';
 import axios from 'axios';
 import { Movie } from '../models/type';
 import MovieList from '../components/movie-list';
+import { observer } from 'mobx-react-lite';
+import SaveMoviesStore from '../store/saved-movies-store';
 
 const emptyMovie:Movie = {
     movieId: "",
@@ -15,7 +17,7 @@ const emptyMovie:Movie = {
     description: ""
 }
 
-export default function MovieDetail(){
+export default function MovieDetail(props:{store:SaveMoviesStore}){
     const [movie, setMovie] = useState<Movie>(emptyMovie)
     const [movieDataLoading, setMovieDataLoading] = useState<boolean>(false)
     const [categoryNames, setCategoryNames] = useState<string[]>([])
@@ -71,6 +73,7 @@ export default function MovieDetail(){
             movie={movie} 
             categoryNames={categoryNames}
             movieDataLoading={movieDataLoading}
+            store={props.store}
         ></MovieCard>
         <Typography variant="h6" component="div" style={{marginTop:20, marginLeft:15,marginBottom:0}}>
             Recommended movies
@@ -79,6 +82,7 @@ export default function MovieDetail(){
             movies={nearestMovies} 
             isLoading={nearestMovieLoading}
             onItemClicked={goToNextMoviePage}
+            store={props.store}
         />
         </div>
       );
