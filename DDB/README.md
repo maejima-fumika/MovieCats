@@ -1,6 +1,8 @@
-# README
+# DynamoDB
+In thie time, I used AWS Dynamodb to store movie data.
 
-## DynamoDB Settings
+
+## Table Settings
 
 ### Categories
 
@@ -36,3 +38,14 @@
 | averageRatingOfMovie | LocalSecondaryIndex(sortkey) | Number | |
 | createdAt | | String | ex.:2021-09-27T15:08:10 |
 | updatedAt | | String | ex.:2021-09-27T15:08:10 |
+
+## File Structure
+
+```bash
+|- ml-latest-small # Downloaded from MovieLens
+|- table-data |-csv/ # Data which uploaded to DynamoDB table.
+              |- ipynb files # Files to create and upload the Dynamodb table data.
+|- template.yaml # SAM setting file which used to create tables.
+```
+
+
