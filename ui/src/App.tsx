@@ -11,9 +11,9 @@ import Home from './pages/home';
 function App() {
   return (
     <div>
-      <Header></Header>
-    <div style={{paddingTop:50}}>
       <BrowserRouter>
+       <Header></Header>
+      <div style={{paddingTop:50}}>
         <Routes>
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
@@ -21,8 +21,9 @@ function App() {
           <Route path="movie-detail/:id" element={<MovieDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </div>
       </BrowserRouter>
-      </div>
+      
     </div>
   );
 }

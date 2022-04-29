@@ -33,7 +33,7 @@ export default function MoviesOfCategory(){
       }, []);
     return (
       <div>
-      {moviesNotFound || (!isLoading && movies.length==0)
+      {moviesNotFound || (!isLoading && movies.length===0)
         ?<div style={{textAlign:"center",marginTop:100}}><h2>Movies were not found.</h2></div>
         :<div>
           <Typography color="text.secondary" component="div" style={{marginTop:20, marginLeft:15, fontSize:15}}>
