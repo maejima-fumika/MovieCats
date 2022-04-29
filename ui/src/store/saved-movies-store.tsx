@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx"
 
-export default class SaveMoviesStore {
+export default class SavedMoviesStore {
     savedMovies:string[] = []
     constructor(){
         makeAutoObservable(this)

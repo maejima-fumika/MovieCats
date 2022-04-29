@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import SaveMoviesStore from './store/saved-movies-store';
+import SavedMoviesStore from './store/saved-movies-store';
 const theme = createTheme({
   palette: {
     primary: {
@@ -16,7 +16,7 @@ const theme = createTheme({
   },
 });
 
-const savedMovieStore = new SaveMoviesStore()
+const savedMoviesStore = new SavedMoviesStore()
 
 
 const root = ReactDOM.createRoot(
@@ -25,7 +25,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App store={savedMovieStore}/>
+      <App store={savedMoviesStore}/>
     </ThemeProvider>
   </React.StrictMode>
 );

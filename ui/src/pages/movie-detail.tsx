@@ -6,8 +6,7 @@ import MovieCard from '../components/movie-card';
 import axios from 'axios';
 import { Movie } from '../models/type';
 import MovieList from '../components/movie-list';
-import { observer } from 'mobx-react-lite';
-import SaveMoviesStore from '../store/saved-movies-store';
+import SavedMoviesStore from '../store/saved-movies-store';
 
 const emptyMovie:Movie = {
     movieId: "",
@@ -17,7 +16,7 @@ const emptyMovie:Movie = {
     description: ""
 }
 
-export default function MovieDetail(props:{store:SaveMoviesStore}){
+export default function MovieDetail(props:{store:SavedMoviesStore}){
     const [movie, setMovie] = useState<Movie>(emptyMovie)
     const [movieDataLoading, setMovieDataLoading] = useState<boolean>(false)
     const [categoryNames, setCategoryNames] = useState<string[]>([])

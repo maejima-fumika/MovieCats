@@ -10,13 +10,13 @@ import { Movie } from '../models/type';
 import IsLoading from './is-loading';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import { observer } from 'mobx-react-lite';
-import SaveMoviesStore from '../store/saved-movies-store';
+import SavedMoviesStore from '../store/saved-movies-store';
 
 type MovieListProps = {
     movies:Movie[],
     isLoading:boolean,
     onItemClicked:(movieId:string)=>void,
-    store:SaveMoviesStore
+    store:SavedMoviesStore
 }
 
 export default observer(function MovieList(props:MovieListProps){

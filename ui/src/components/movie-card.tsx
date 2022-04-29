@@ -11,7 +11,7 @@ import MovieCardImage from './movie-card-image'
 import { observer } from 'mobx-react-lite';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
-import SaveMoviesStore from '../store/saved-movies-store';
+import SavedMoviesStore from '../store/saved-movies-store';
 import { IconButton } from '@mui/material';
 
 
@@ -24,7 +24,7 @@ type MovieCardProps = {
     movie:Movie,
     categoryNames:string[],
     movieDataLoading:boolean,
-    store:SaveMoviesStore
+    store:SavedMoviesStore
 }
 
 export default observer(function MovieCard(props:MovieCardProps){
