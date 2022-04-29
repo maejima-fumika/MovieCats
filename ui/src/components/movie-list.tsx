@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import { Rating } from '@mui/material';
 import { Movie } from '../models/type';
 import IsLoading from './is-loading';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 
 type MovieListProps = {
     movies:Movie[],
@@ -41,6 +42,7 @@ export default function MovieList(props:MovieListProps){
                     secondary={
                     <React.Fragment>
                         <Rating name="read-only" value={movie.averageRatingOfMovie} precision={0.1}  readOnly style={{marginTop:5}} size="small"/>
+                        <BookmarkAddedIcon style={{marginBottom:-2}}/>
                         <br />
                         {movie.description}
                     </React.Fragment>

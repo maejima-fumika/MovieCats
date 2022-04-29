@@ -1,19 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from './components/header';
-
+import Footer from './components/footer';
+import SaveMoviesStore from './store/saved-movies-store';
 import Categories from './pages/categories';
 import MoviesOfCategory from './pages/movies-of-category';
 import MovieDetail from './pages/movie-detail';
 import NotFound from './pages/not-found';
 import Home from './pages/home';
 
+const savedMovieStore = new SaveMoviesStore()
+
 function App() {
   return (
     <div>
       <BrowserRouter>
-       <Header></Header>
-      <div style={{paddingTop:50}}>
+       <Header/>
+        <div style={{paddingTop:50}}>
         <Routes>
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
@@ -22,6 +25,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
+      <Footer/>
       </BrowserRouter>
       
     </div>
